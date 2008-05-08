@@ -2,7 +2,7 @@
 Summary:	S5 Slideshow Plugin
 Name:		dokuwiki-plugin-%{plugin}
 Version:	20070120
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://wiki.splitbrain.org/_media/plugin:s5-plugin-2007-01-20.tgz
