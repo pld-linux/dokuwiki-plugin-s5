@@ -1,12 +1,12 @@
 %define		plugin		s5
 Summary:	S5 Slideshow Plugin
 Name:		dokuwiki-plugin-%{plugin}
-Version:	20070120
+Version:	20080620
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://wiki.splitbrain.org/_media/plugin:s5-plugin-2007-01-20.tgz
-# Source0-md5:	967ae23990aea7a2350e555fdb514940
+Source0:	http://dev.splitbrain.org/download/snapshots/s5-plugin-latest.tgz
+# Source0-md5:	c6d8ac79fec6a5095d0bce69c1c4d407
 Source1:	dokuwiki-find-lang.sh
 URL:		http://wiki.splitbrain.org/plugin:s5
 Requires:	dokuwiki >= 20061106
