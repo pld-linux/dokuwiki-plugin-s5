@@ -1,41 +1,46 @@
+%define		subver	2016-02-03
+%define		ver		%(echo %{subver} | tr -d -)
 %define		plugin		s5
+%define		php_min_version 5.3.0
+%include	/usr/lib/rpm/macros.php
 Summary:	S5 Slideshow Plugin
 Name:		dokuwiki-plugin-%{plugin}
-Version:	20080620
+Version:	%{ver}
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://dev.splitbrain.org/download/snapshots/s5-plugin-latest.tgz
-# Source0-md5:	c6d8ac79fec6a5095d0bce69c1c4d407
-Source1:	dokuwiki-find-lang.sh
-URL:		http://wiki.splitbrain.org/plugin:s5
-Requires:	dokuwiki >= 20061106
+Source0:	https://github.com/splitbrain/dokuwiki-plugin-s5/archive/%{subver}/%{plugin}-%{subver}.tar.gz
+# Source0-md5:	97cb941d3e53cbccada7005dc7fde6d1
+URL:		https://www.dokuwiki.org/plugin:s5
+BuildRequires:	rpmbuild(macros) >= 1.553
+Requires:	php(core) >= %{php_min_version}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		dokuconf	/etc/webapps/dokuwiki
 %define		dokudir		/usr/share/dokuwiki
 %define		plugindir	%{dokudir}/lib/plugins/%{plugin}
+%define		find_lang 	%{_usrlibrpm}/dokuwiki-find-lang.sh %{buildroot}
 
 %description
-S5 is a slide show format based entirely on XHTML, CSS, and JavaScript. With
-one file, you can run a complete slide show and have a printer-friendly version
-as well. 
+S5 is a slide show format based entirely on XHTML, CSS, and
+JavaScript. With one file, you can run a complete slide show and have
+a printer-friendly version as well.
 
-This plugin can create S5 slide show presentations from any DokuWiki page. 
+This plugin can create S5 slide show presentations from any DokuWiki
+page.
 
 %prep
-%setup -q -n %{plugin}
+%setup -qc
+mv *-%{plugin}-*/* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{plugindir}
-rm -f %{name}.lang
 cp -a . $RPM_BUILD_ROOT%{plugindir}
-rm -f $RPM_BUILD_ROOT%{plugindir}/{COPYING,README,VERSION}
+rm $RPM_BUILD_ROOT%{plugindir}/README
 
-# find locales
-sh %{SOURCE1} %{name}.lang
+%find_lang %{name}.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
