@@ -2,7 +2,6 @@
 %define		ver		%(echo %{subver} | tr -d -)
 %define		plugin		s5
 %define		php_min_version 5.3.0
-%include	/usr/lib/rpm/macros.php
 Summary:	S5 Slideshow Plugin
 Name:		dokuwiki-plugin-%{plugin}
 Version:	%{ver}
